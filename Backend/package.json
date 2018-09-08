@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "append-query": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "empty": "^0.10.1",
+    "express": "^4.16.3",
+    "is-empty": "^1.2.0",
+    "kijiji-scraper": "^4.0.2",
+    "nodemon": "^1.18.4",
+    "request": "^2.88.0"
+  }
+}
