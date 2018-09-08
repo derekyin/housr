@@ -136,20 +136,48 @@ var Saskatchewan = [
 ]
 
 //TODO: territories and sub-regions are nested
+var obj;
+
+function index(obj,i) {return obj[i]}
+'a.b.etc'.split('.').reduce(index, obj)
+
+$( document ).ready(function() {
+  obj = JSON.parse(data)
+  console.log(obj)
+
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+        console.log(key + " -> " + obj[key]);
+        appendToProvincialFormControl(key)
+    }
+  }
+});
 
 $('#provinceFormControlSelect').on('change', function() {
-    console.log(this.value)
+    console.log(this)
     appendToRegionFormControl(this.value)
   });
   
-function appendToRegionFormControl(province){
-  newitemnum = 2
-  newitemdesc = "lol"
-
-  for (int i = 0; i < ; i++){
-    $("#regionFormControlSelect").append('<option value="'+i+'" selected="">'+newitemdesc+'</option>');
-  }
+function appendToRegionFormControl(provinceName){
   
+  console.log(provinceName)
+
+  console.log(obj.string(provinceName))
+
+  for (var key in obj.provinceName) {
+    if (obj.province.hasOwnProperty(key)) {
+        console.log(key + " -> " + obj.province[key]);
+    }
+  }
+
+  // for (int i = 0; i < ; i++){
+  //   $("#regionFormControlSelect").append('<option value="'+i+'" selected="">'+newitemdesc+'</option>');
+  // }
+  
+}
+
+function appendToProvincialFormControl(province){
+    $("#provinceFormControlSelect").append('<option value="'+province+'" selected="">'+ province+'</option>');
 }
 $('#submit').click(function(){
   console.log("submit clicked")
