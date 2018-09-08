@@ -1,7 +1,7 @@
 const loc_dist = require('./loc_dist.js');
 const kijiji_data = require('./kijiji_scrapper.js');
 var empty = require('is-empty');
-
+const spawn = require("child_process").spawn;
 
 async function get_normalized_data(prov, city, cur_loc){
     let kijiji_listings = await kijiji_data.get_img_and_attr(prov, city);
@@ -34,13 +34,20 @@ async function get_normalized_data(prov, city, cur_loc){
 
     //Normalize
     for(var i = 0; i < distances.length; i++){
+        //console.log(kijiji_listings.image_url_list[i]);
+        
+        let rating = await get_prediction(kijiji_listings.image_url_list[i]);
+
+        console.log(rating.toString('utf8'));        
+
         let attribute = kijiji_listings.attributes[i];
         var tdist = distances[i], tprice = prices[i], desc = attribute.description, address = attribute.address, price = attribute.price
         var images = kijiji_listings.image_url_list[i];
         var distance_norm = Math.abs((distances[i] - min_dist)/(max_dist - min_dist));
         var prices_norm = Math.abs((prices[i] - min_price)/(max_price - min_price));
 
-        var total = distance_norm + prices_norm;
+
+        var total = distance_norm + prices_norm + rating;
 
         let listing = {
             total_norm: total,
@@ -52,6 +59,19 @@ async function get_normalized_data(prov, city, cur_loc){
         final_listings.listings.push(listing);
     }
     return final_listings;
+}
+
+function get_prediction(data){
+     const pythonProcess = spawn('python', ["../ML_Model/predict.py", JSON.stringify(data)]);
+
+     return new Promise((resolve, reject) => {
+        let data = pythonProcess.stdout.on('data', (data) => {
+            console.log('Recieved data');
+            console.log(data);
+            resolve(data.toString('utf8'));
+         });
+     })
+    
 }
 
 function compare(listing_a,listing_b) {
