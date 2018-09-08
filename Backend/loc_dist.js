@@ -1,6 +1,7 @@
 var request = require('request');
 var empty = require('is-empty');
 const appendQuery = require('append-query')
+require('dotenv').config();
 
 function get_loc_obj(loc){
     if(empty(loc)) return false;
@@ -51,6 +52,8 @@ async function get_dist_obj(cur_loc_address, target_loc_coords){
         mode:"driving"
     }
 
+
+
     let url = appendQuery(uri, params);
 
     return new Promise((resolve, reject) => {
@@ -59,6 +62,9 @@ async function get_dist_obj(cur_loc_address, target_loc_coords){
             "uri": url,
             "json": true,
         }, (error, response, body) => {
+            if(error){
+                console.log(error);
+            }
             if(empty(body)) reject(false);
             else resolve(body);
         });
