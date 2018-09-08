@@ -1,5 +1,6 @@
 Backend/node_modules
 Backend/.env
+Backend/serviceAccountKey.json
 ML_Model/train/
 ML_Model/validation/
 ML_Model/model.json
