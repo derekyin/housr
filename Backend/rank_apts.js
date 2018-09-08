@@ -35,7 +35,7 @@ async function get_normalized_data(prov, city, cur_loc){
     //Normalize
     for(var i = 0; i < distances.length; i++){
         let attribute = kijiji_listings.attributes[i];
-        var tdist = distances[i], tprice = prices[i], desc = attribute.description, address = attribute.address, price = attribute.price
+        var tdist = distances[i], url = attribute.url, tprice = prices[i], desc = attribute.description, address = attribute.address, price = attribute.price
         var images = kijiji_listings.image_url_list[i];
         var distance_norm = Math.abs((distances[i] - min_dist)/(max_dist - min_dist));
         var prices_norm = Math.abs((prices[i] - min_price)/(max_price - min_price));
@@ -45,9 +45,11 @@ async function get_normalized_data(prov, city, cur_loc){
         let listing = {
             total_norm: total,
             price: tprice,
+            distance: tdist,
             desc: desc,
             address:address,
-            images:images
+            images:images,
+            url: url
         }
         final_listings.listings.push(listing);
     }
