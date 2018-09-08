@@ -18,6 +18,8 @@ $( document ).ready(function() {
 $('#provinceFormControlSelect').on('change', function() {
     appendToRegionFormControl(this.value)
 });
+
+
   
 function ref(obj, str) {
   str = str.split(".");

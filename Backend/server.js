@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 var empty = require('is-empty');
 var rank_apts = require('./rank_apts.js')
 
+var express_options = {
+    extensions: ['htm', 'html'],
+}
+
 function get_no_data(){
     return JSON.stringify({data:false});
 }
@@ -27,6 +31,8 @@ async function getApts(req, res){
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.use(express.static('../front_end', express_options))
 
 app.use(bodyParser.json())
 
