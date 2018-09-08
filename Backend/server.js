@@ -17,11 +17,11 @@ async function getApts(req, res){
     let province = body.province;
     let city = body.city;
 
-    let sorted_listings = rank_apts.rank_data(province, city, central_address);
-
     if(empty(central_address) || empty(province) || empty(city)) res.send(get_no_data());
 
-    res.send(JSON.stringify({data:true}))
+    let sorted_listings = await rank_apts.rank_data(province, city, central_address);
+
+    res.send(JSON.stringify(sorted_listings));
 }
 
 app.use(bodyParser.urlencoded({
