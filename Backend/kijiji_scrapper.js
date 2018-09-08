@@ -42,7 +42,8 @@ module.exports = {
                     location:[listing.attributes.location.latitude, listing.attributes.location.longitude],
                     price:listing.attributes.price,
                     address:listing.attributes.location.mapAddress,
-                    description:listing.description
+                    description:listing.description,
+                    url:listing.url
                 };
                 listing_data.attributes.push(attribute);
             }
