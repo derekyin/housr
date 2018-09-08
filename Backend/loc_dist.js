@@ -47,7 +47,8 @@ async function get_dist_obj(cur_loc_address, target_loc_coords){
         units:"metric",
         origins:`${cur_loc_coords[0]}, ${cur_loc_coords[1]}`,
         destinations:`${target_loc_coords[0]}, ${target_loc_coords[1]}`,
-        key:process.env.google_api_key
+        key:process.env.google_api_key,
+        mode:"driving"
     }
 
     let url = appendQuery(uri, params);
@@ -64,18 +65,6 @@ async function get_dist_obj(cur_loc_address, target_loc_coords){
     })
 }
 
-// async function test(){
-//     let coords = await get_long_and_lat("Charleston Campus Mountain View, CA");
-//     console.log(coords);
-// }
-
-// async function test_dist(){
-//     console.log(await get_dist("1600 Amphitheatre Parkway, Mountain View, CA", [37.4190426, -122.081614]));
-// }
-
-// test_dist();
-
-
 module.exports = {
     /**
      * 
@@ -85,7 +74,9 @@ module.exports = {
     get_dist: async function(cur_loc_address, target_loc_coords){
         let dist_obj = await get_dist_obj(cur_loc_address, target_loc_coords);
         if(empty(dist_obj) || empty(dist_obj.rows[0]) || empty(dist_obj.rows[0].elements[0])
-        || empty(dist_obj.rows[0].elements[0].distance)) return false;
+        || empty(dist_obj.rows[0].elements[0].distance)){
+            return false;
+        }
         return dist_obj.rows[0].elements[0].distance.value;
     }
 }

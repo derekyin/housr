@@ -22,7 +22,10 @@ async function get_apt_listings(locationId){
 
 // async function test(){
 //     let img_and_attr = await get_img_and_attr(1700185);
+//     console.log(img_and_attr)
 // }
+
+// test();
 
 module.exports = {
     get_img_and_attr: async function (locationId) {
