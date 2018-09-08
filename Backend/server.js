@@ -2,6 +2,7 @@ var express = require('express')
 var app = express();
 const bodyParser = require('body-parser');
 var empty = require('is-empty');
+var rank_apts = require('./rank_apts.js')
 
 function get_no_data(){
     return JSON.stringify({data:false});
@@ -18,7 +19,9 @@ async function getApts(req, res){
 
     if(empty(central_address) || empty(province) || empty(city)) res.send(get_no_data());
 
-    res.send(JSON.stringify({data:true}))
+    let sorted_listings = await rank_apts.rank_data(province, city, central_address);
+
+    res.send(JSON.stringify(sorted_listings));
 }
 
 app.use(bodyParser.urlencoded({
