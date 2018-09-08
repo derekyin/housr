@@ -15,6 +15,7 @@
     "empty": "^0.10.1",
     "express": "^4.16.3",
     "is-empty": "^1.2.0",
+    "kijiji-scraper": "^4.0.2",
     "nodemon": "^1.18.4",
     "request": "^2.88.0"
   }
