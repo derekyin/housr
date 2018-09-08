@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 var empty = require('is-empty');
 var rank_apts = require('./rank_apts.js')
 
+const root = {root:'../front_end'}
+
+
 var express_options = {
     extensions: ['htm', 'html'],
 }
@@ -37,6 +40,10 @@ app.use(express.static('../front_end', express_options))
 app.use(bodyParser.json())
 
 app.post('/api/getApts', [getApts]);
+
+app.get('/listings', (req,res) => {
+    res.sendFile("apartment_card.html", root);
+})
 
 app.set('port', process.env.port || 3000)
 

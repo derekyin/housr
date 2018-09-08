@@ -31,7 +31,7 @@ function appendToRegionFormControl(provinceName){
 
   for (var key in provinceObject) {
     if (provinceObject.hasOwnProperty(key)) {
-        console.log(key + " -> " + provinceObject[key]);
+        // console.log(key + " -> " + provinceObject[key]);
         $("#regionFormControlSelect").append('<option value="'+key+'" selected="">'+ key+'</option>');
     }
   }  
@@ -45,10 +45,6 @@ function get_listings(){
   addr = $("#Address").val()
   prov = $("#provinceFormControlSelect option:selected").val()
   region = $("#regionFormControlSelect option:selected").val()
-
-  console.log($("#Address").val())
-  console.log($("#provinceFormControlSelect option:selected").val())
-  console.log($("#regionFormControlSelect option:selected").val())
 
   var payload = {
     address: addr,
@@ -64,11 +60,8 @@ function get_listings(){
         data: JSON.stringify(payload),
         dataType: 'json',
         success: function (listings) {
-            console.log(listings);
-            if (!listings) reject(false);
             listings = JSON.parse(JSON.stringify(listings));
-            if (listings['data']) resolve(listings);
-            else reject(false);
+            resolve(listings);
         },
         error: function (err) {
             reject(false);
@@ -80,7 +73,8 @@ function get_listings(){
   })
 }
 $('#submit').click(async function(){
-  var listings = await get_listings().catch((err) => {return false;});
-  console.log(listings);
+  var listings = await get_listings();
+  localStorage.setItem("listings", JSON.stringify(listings));
+  window.location.href='/listings'
 })
 
