@@ -19,50 +19,53 @@
     </head>
     
     <body>
-        <div class = "container">
+        <div class="container">
             <div class="row">
-                <div class="col-lg">
-                </div>
-            </div>
-        </div>
-        <div class="container col-sm-7">
-            <div class="row">
-                <textarea id="template">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            {{#listings}}
-                                <div class="{{class}}">
-                                    <div class="card" style="width: 18rem;">
-                                            <img class="card-img-top" src="apartment_placeholder.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{address}}</h5>
-                                                <p class="card-text">
-                                                    <ul>
-                                                        <li>{{distance}} km</li>
-                                                        <li>${{price}}</li>
-                                                    </ul>
-                                                </p>
-                                                <a target="_blank" href="{{url}}" class="btn btn-primary">Go to Listing</a>
-                                            </div>
+                <div class="col-sm-4 offset-md-4">
+                    <!-- <div class="centerBlock"> -->
+                    <!-- <div class="mx-auto" style="width: 400px;"> -->
+                    <div class = "container-fluid">
+                            <h1 class="text-center">wtf</h1>
+                            <textarea id="template">
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            {{#listings}}
+                                                <div class="{{class}}">
+                                                    <div class="card" style="width: 20rem;">
+                                                            <img class="card-img-top" src="apartment_placeholder.jpg" alt="Card image cap">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">{{address}}</h5>
+                                                                <p class="card-text">
+                                                                    <ul>
+                                                                        <li>{{distance}} km</li>
+                                                                        <li>${{price}}</li>
+                                                                    </ul>
+                                                                </p>
+                                                                <a target="_blank" href="{{url}}" class="btn btn-primary">Go to Listing</a>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            {{/listings}}
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>    
+                                    </div>
+                                </textarea>
+                                <div class="">
+                                    <div class="result">       
+                                        <div id="result"></div>
                                     </div>
                                 </div>
-                            {{/listings}}
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>    
                     </div>
-                </textarea>
-                <div class="">
-                <div class="result">       
-                    <div id="result">
-                    </div>
-                </div>
+                    
+                        
+                <!-- </div> -->
                 </div>
             </div>
         </div>
