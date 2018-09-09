@@ -3,6 +3,7 @@ var app = express();
 const bodyParser = require('body-parser');
 var empty = require('is-empty');
 var rank_apts = require('./rank_apts.js')
+var auth = require('./db.js')
 
 const root = {root:'../front_end'}
 
@@ -13,6 +14,59 @@ var express_options = {
 
 function get_no_data(){
     return JSON.stringify({data:false});
+}
+
+function posted(post, msg) {
+    return {
+        posted: post,
+        message: msg
+    };
+}
+
+async function set_error_login(username, password) {
+    if (empty(username) || empty(password)) {
+        return (posted(false, "Password OR Username not provided"));
+    }
+    let login = await auth.login(username, password).catch((err) => {return false;});
+    if (!login) {
+        return (posted(false, "Invalid Password"));
+    }
+    return false;
+}
+
+async function get_res_login(req, res) {
+    if(empty(req) || empty(req.body)) res.send(get_no_data());
+
+    body = req.body;
+
+    let username = body.username;
+    let password = body.password;
+
+
+    let err = await set_error_login(username, password);
+    res.status(200);
+    if (err) {
+        res.send(err);
+    } else {
+        res.send(posted(true,"Success"));
+    }
+}
+
+async function get_res_sign_up(req, res){
+    if(empty(req) || empty(req.body)) res.send(posted(false,"Error"));
+
+    body = req.body;
+
+    let username = body.username, password = body.password, first = body.first, last = body.last;
+
+    if(empty(username) || empty(password) || empty(first) || empty(last)){
+        res.send(posted(false,"Error"));
+        return;
+    }
+
+    let response = await auth.sign_up(first, last, username, password).catch(err => {return false;});
+    if(!response) res.send(posted(false,"Error"));
+    else res.send(posted(true,"Success"));
 }
 
 async function getApts(req, res){
@@ -39,10 +93,18 @@ app.use(express.static('../front_end', express_options))
 
 app.use(bodyParser.json())
 
-app.post('/api/getApts', [getApts]);
+app.post('/api/getApts', [getApts])
+
+app.post('/api/login', [get_res_login])
+
+app.post('/api/signUp', [get_res_sign_up])
 
 app.get('/listings', (req,res) => {
     res.sendFile("apartment_card.html", root);
+})
+
+app.get('/search', (req,res) => {
+    res.sendFile("search.html", root);
 })
 
 app.set('port', process.env.port || 3000)
