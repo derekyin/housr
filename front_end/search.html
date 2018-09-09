@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>foo_bar</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="auto_complete.js"></script>
+    </head>
+    
+    <body>
+        <div class = "container">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" class="form-control" id="Address" placeholder="Address" onfocus="geolocate()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="provinceFormControlSelect">Province/Territories</label>
+                        <select class="form-control" id="provinceFormControlSelect">
+                            <option value="Please Select" selected disabled>Please select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="regionFormControlSelect">Region</label>
+                            <select class="form-control" id="regionFormControlSelect">
+                            </select>
+                        </div>
+                    </div>
+                <div class="col-sm">
+                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+        <script src ="data.js"></script>
+        <script src="selector.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu7tar_9fwTvOVaM0pRBOJRG9woDyFgDY&libraries=places&callback=initAutocomplete"async defer></script>
+    </body>
+</html>
