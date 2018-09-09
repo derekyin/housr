@@ -107,6 +107,10 @@ app.get('/search', (req,res) => {
     res.sendFile("search.html", root);
 })
 
+app.get('/signup', (req,res) => {
+    res.sendFile("signup.html", root);
+})
+
 app.set('port', process.env.port || 3000)
 
 app.listen(app.get('port'), () => {
