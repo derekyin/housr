@@ -43,6 +43,8 @@ async function get_normalized_data(prov, city, cur_loc){
 
         var total = distance_norm + prices_norm;
 
+        
+
         let listing = {
             total_norm: total,
             price: tprice,
