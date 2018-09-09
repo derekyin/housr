@@ -20,9 +20,18 @@ def url_to_img(url):
 
 def main():
 	#receive data from node backend
-	url_string = sys.argv[1].replace('[', '').replace(']', '').replace("\"", '')
+	#url_string = sys.argv[1].replace('[', '').replace(']', '').replace("\"", '')
 	#json_urls should be a list of lists
-	urls = url_string.split(',')
+	listings = sys.argv[1].replace('[','').replace("\"", '').split(']')
+	urls = list()
+	for listing in listings:
+		listing_urls = listing.split(',')
+		for url in listing_urls:
+			temp_list = list()
+			replace_url = url.replace(' ', '').replace('\'', '')
+			if(len(replace_url) != 0):
+				temp_list.append(replace_url)
+			urls.append(temp_list)
 
 	#load saved model
 	model_json = open('../ML_Model/model.json', 'r')
@@ -37,14 +46,15 @@ def main():
 	loaded_model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 
 	all_predictions = list()
-	for url in urls:
-		image = url_to_img(url)
-		image = np.expand_dims(image, axis=0)
-		prediction = loaded_model.predict(image)
-		all_predictions.append(prediction)
+	for listing in urls:
+		predictions = list()
+		for url in listing:
+			image = url_to_img(url)
+			image = np.expand_dims(image, axis=0)
+			predictions.append(loaded_model.predict(image))
+		all_predictions.append(np.mean(predictions))
 
-
-	print(np.mean(all_predictions))
+	print(json.dumps(all_predictions))
 	sys.stdout.flush()
 
 if __name__ == '__main__':
