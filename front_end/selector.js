@@ -60,10 +60,14 @@ function get_listings(){
         data: JSON.stringify(payload),
         dataType: 'json',
         success: function (listings) {
+            $( ".lds-ring" ).hide();
+            $(".lds-ring").css('left',"50%");
             listings = JSON.parse(JSON.stringify(listings));
             resolve(listings);
         },
         error: function (err) {
+            $( ".lds-ring" ).hide();
+            $(".lds-ring").css('left',"50%");
             reject(false);
         },
         processData: false,
@@ -73,6 +77,8 @@ function get_listings(){
   })
 }
 $('#submit').click(async function(){
+  $( ".lds-ring" ).show();
+  $(".lds-ring").css('left',"50%");
   var listings = await get_listings();
   localStorage.setItem("listings", JSON.stringify(listings));
   window.location.href='/listings'
