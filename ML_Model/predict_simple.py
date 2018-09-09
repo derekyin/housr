@@ -5,15 +5,14 @@ os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
 import numpy as np
 import h5py
 import sys
-import json
 import urllib.request
-import cv2
+from cv2 import imdecode,resize,INTER_CUBIC, IMREAD_GRAYSCALE
 
 def url_to_img(url):
 	resp = urllib.request.urlopen(url)
 	image = np.asarray(bytearray(resp.read()), dtype='uint8')
-	image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
-	image = cv2.resize(image, dsize=(50, 50), interpolation=cv2.INTER_CUBIC)
+	image = imdecode(image, IMREAD_GRAYSCALE)
+	image = resize(image, dsize=(50, 50), interpolation=INTER_CUBIC)
 	return image
 
 def main():
@@ -21,11 +20,12 @@ def main():
 	url_string = sys.argv[1].replace('[', '').replace(']', '').replace("\"", '')
 	#json_urls should be a list of lists
 	urls = url_string.split(',')
-
+	print(urls)
 	predictions = list()
-	for url in urls:
-		image = url_to_img(url)
-		predictions.append(image)
+	# for url in urls:
+	# 	image = url_to_img(url)
+	# 	predictions.append(image)
+	predictions.append(url_to_img(urls[0]))
 
 	print(np.mean(predictions)/255.0)
 	#print(urls[0])
