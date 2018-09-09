@@ -2,6 +2,10 @@ body {
     background-color: white;
 }
 
+#back{
+    margin-top: 10%;
+}
+
 a.carousel-control-next {
     right: 0px;
 }
@@ -20,4 +24,8 @@ span.carousel-control-next-icon {
 
 div#result {
     width: 362px;
+}
+
+textarea#template {
+    display: none;
 }
