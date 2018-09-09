@@ -12,13 +12,18 @@
   "dependencies": {
     "append-query": "^2.0.1",
     "body-parser": "^1.18.3",
+    "docusign-esign": "^4.0.2",
     "dotenv": "^6.0.0",
     "empty": "^0.10.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "firebase-admin": "^6.0.0",
+    "fs-extra": "^7.0.0",
     "is-empty": "^1.2.0",
     "kijiji-scraper": "^4.0.2",
+    "moment": "^2.22.2",
     "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
     "request": "^2.88.0"
   }
 }

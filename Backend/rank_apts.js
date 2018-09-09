@@ -56,7 +56,8 @@ async function get_normalized_data(prov, city, cur_loc){
             distance: tdist,
             desc: desc,
             address:address,
-            images:images
+            images:images,
+            url:url
         }
         final_listings.listings.push(listing);
     }

@@ -72,7 +72,7 @@ function get_listings(){
         },
         processData: false,
         type: 'POST',
-        url: 'http://localhost:3000/api/getApts'
+        url: 'http://localhost:8000/api/getApts'
       })
   })
 }

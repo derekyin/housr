@@ -43,6 +43,6 @@ $(document).ready(function(e) {
         },
         processData: false,
         type: 'POST',
-        url: 'http://localhost:3000/api/signUp'
+        url: 'http://localhost:8000/api/signUp'
       })
  }

@@ -111,7 +111,7 @@ app.get('/signup', (req,res) => {
     res.sendFile("signup.html", root);
 })
 
-app.set('port', process.env.port || 3000)
+app.set('port', process.env.port || 8000)
 
 app.listen(app.get('port'), () => {
     console.log('App Started on Port: ' + app.get('port'))

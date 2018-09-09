@@ -41,6 +41,6 @@ $(document).ready(function(e) {
         },
         processData: false,
         type: 'POST',
-        url: 'http://localhost:3000/api/login'
+        url: 'http://localhost:8000/api/login'
       })
  }
