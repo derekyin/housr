@@ -21,3 +21,11 @@ span.carousel-control-next-icon {
 div#result {
     width: 362px;
 }
+
+textarea#template {
+    display: none;
+}
+
+#back{
+    margin-top: 10%;
+}
