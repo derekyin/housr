@@ -89,6 +89,8 @@ app.post('/api/login', [get_res_login])
 
 app.post('/api/signUp', [get_res_sign_up])
 
+app.use(express.static('frontend'));
+
 app.set('port', process.env.port || 3000)
 
 app.listen(app.get('port'), () => {
