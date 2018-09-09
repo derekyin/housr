@@ -27,7 +27,12 @@ def main():
 		image = url_to_img(url)
 		predictions.append(image)
 
-	print(np.mean(predictions)/255.0)
+	mean = np.mean(predictions)/255.0
+	if mean > 0.25 and mean < 0.5:
+		mean = 1-(mean*2)
+	elif mean > 0.5 and mean < 0.75:
+		mean = ((mean-0.5) * 2) + 0.5
+	print(mean)
 	#print(urls[0])
 	#print(sys.argv[1])
 	sys.stdout.flush()

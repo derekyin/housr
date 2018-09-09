@@ -30,10 +30,6 @@ async function get_normalized_data(prov, city, cur_loc){
         prices.push(price);
     }
 
-    // console.log(distances);
-    // console.log(prices);
-    // console.log(max_dist + " " + min_dist + " " + max_price + " " + min_price);
-    //console.log(kijiji_listings.image_url_list)
     //Normalize
     for(var i = 0; i < distances.length; i++){
         //console.log(kijiji_listings.image_url_list[i]);
@@ -48,11 +44,12 @@ async function get_normalized_data(prov, city, cur_loc){
         var distance_norm = Math.abs((distances[i] - min_dist)/(max_dist - min_dist));
         var prices_norm = Math.abs((prices[i] - min_price)/(max_price - min_price));
 
+        console.log(rating);
+
 
         var total = distance_norm + prices_norm + rating;
 
         
-
         let listing = {
             total_norm: total,
             price: tprice,
