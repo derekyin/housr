@@ -1,2 +1,6 @@
 Backend/node_modules
 Backend/.env
+ML_Model/train/
+ML_Model/validation/
+ML_Model/weights1.h5
+ML_Model/model.json
